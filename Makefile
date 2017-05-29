@@ -1,38 +1,53 @@
 ###########################################################################
-# last changed Time-stamp: <2016-10-21 14:54:25 adonath>
+# last changed Time-stamp: <2017-05-29 16:31:15 adonath>
 ###########################################################################
 #
-# 'make'            build executable file 'gappy'
-# 'make clean'      removes all .o and executable files
+# 'make'            build gappy binary
+# 'make install'    install gappy binary in bin/
+# 'make uninstall'  uninstall gappy
+# 'make clean'      remove all .o and executable files
 
-# define the CPP compiler
+# Installation targets
+#
+prefix = $(CURDIR)
+bindir = $(prefix)/bin
+
+# Compiler details
+#
 CC = g++
-# define compile-time flags
+# compile-time flags
 CFLAGS = -ansi -g -O3 -funroll-loops
 WARN = -Wall -pedantic-errors
 # define any directories containing header files
 INCLUDES = -I/usr/include
-# define library paths
+# library paths
 LFLAGS = -L/usr/lib64/ -L/usr/lib/
 # define any libraries to link into executable:
 LIBS = 
-# define the CPP source files
+# source files
 SOURCES = gaps.cpp utils.cpp options.cpp files.cpp
-# define the CPP object files 
+# object files 
 OBJS = $(SOURCES:.cpp=.o)
-# define the executable file 
-MAIN = gappy
-VERSION	 = 1.0
+
+# Package information
+#
+MAIN 	= gappy
+VERSION	= 0.0.1
+
+# Other tools
+#
+INSTALL = /usr/bin/install -c
+
 
 ###
 
-.PHONY: depend clean
+.PHONY: all clean install uninstall
 
-all: 	$(MAIN)
-	@echo  done building $(MAIN).
-
-$(MAIN): $(OBJS) 
-	$(CC) $(CFLAGS) $(INCLUDES) -o $(MAIN) $(OBJS) $(LFLAGS) $(LIBS)
+#all: Compile gappy binary
+all:
+	@echo Building $(MAIN) version $(VERSION).
+	$(MAKE) -C src/ all
+	@echo Done building $(MAIN) version $(VERSION).
 
 # this is a suffix replacement rule for building .o's from .cpp's
 # it uses automatic variables $<: the name of the prerequisite of
@@ -40,5 +55,19 @@ $(MAIN): $(OBJS)
 # (see the gnu make manual section about automatic variables)
 .cpp.o:
 	$(CC) $(CFLAGS) $(INCLUDES) -c $<  -o $@
+
+# install: installs the binary in $(bindir)/
+install:
+	@echo Installing gappy in ./bin/
+	$(MAKE) -C src/ install
+	@echo Done installing.
+
+uninstall:
+	@echo Uninstalling gappy.
+	$(MAKE) -C src/ uninstall
+	@echo Done uninstalling.
+
 clean:
-	$(RM) $(OBJS) *~ $(MAIN)
+	@echo Remove unecessary files.
+	$(MAKE) -C src/ clean
+	@echo Done removing.

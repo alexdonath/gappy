@@ -1,5 +1,5 @@
 /**
- *  last changed Time-stamp: <2016-10-21 16:53:35 adonath>
+ *  last changed Time-stamp: <2017-05-29 16:58:56 adonath>
  *
  *  Author: Wolfgang Otto
  *  Modified by: Alexander Donath, a <dot> donath <at> zfmk <dot> de
@@ -276,9 +276,8 @@ namespace wol {
 
     std::ostringstream message;
     message << std::endl << program_name << " version " << version
-	    << std::endl << "written by Alexander Donath" << std::endl
-	    << "(alex@bioinf.uni-leipzig.de)" << std::endl
-	    << "Date and time of compilation: " << __DATE__ << " " << __TIME__
+	    << std::endl << "Written by Alexander Donath" << " (a.donath@zfmk.de)"
+	    << std::endl << "Time of compilation: " << __DATE__ << " " << __TIME__
 	    << std::endl << std::endl;
 
     _version_message = message.str();

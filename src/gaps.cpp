@@ -1,5 +1,5 @@
 /**
- *  last changed Time-stamp: <2017-05-29 14:59:14 adonath>
+ *  last changed Time-stamp: <2017-05-29 16:52:20 adonath>
  *
  *  Author: Alexander Donath, a <dot> donath <at> zfmk <dot> de
  */
@@ -46,15 +46,7 @@ int main (int argc, char *argv[])
       final.precision(10);
  
       const std::string version = "0.0.1";
-      message << endl << THIS_PROG << " extracts splids (split-inducing indels) "
-	      << endl << "from multiple sequence alignments in FASTA format. "
-	      << endl << "Minimum and maximum values for splid length can be "
-	      << endl << "selected."
-	      << endl << "By default, the output is a FASTA file, containing the "
-	      << endl << "binary coded splid absence/presence information, and "
-	      << endl << "some summary statistics. Output is also available in "
-	      << endl << "PHYLIP and NEXUS format"
-	      << ".";
+      message << endl << THIS_PROG << " extracts splids (split-inducing indels) from multiple sequence alignments.";
       const std::string description = message.str();
       message.str("");
 
