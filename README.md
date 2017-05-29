@@ -23,6 +23,7 @@ cd gappy
 make
 ```
 The gappy binary can be found in `bin/`.
+
 4. Add gappy to your `$PATH`.
 
 ## Usage
