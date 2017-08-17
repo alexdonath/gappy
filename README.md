@@ -22,7 +22,7 @@ cd gappy
 ```
 make
 ```
-4. Optional: install gappy by typing
+Optional: install gappy by typing
 ```
 make install
 ```
