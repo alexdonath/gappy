@@ -18,11 +18,15 @@ git clone https://github.com/alexdonath/gappy.git
 ```
 cd gappy
 ```
-3. Type
+3. Compile gappy by typing
 ```
 make
 ```
-The gappy binary can be found in `bin/`.
+4. Optional: install gappy by typing
+```
+make install
+```
+The gappy binary can now be found in `./bin/`.
 
 4. Add gappy to your `$PATH`.
 
