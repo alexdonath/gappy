@@ -1,5 +1,5 @@
 ###########################################################################
-# last changed Time-stamp: <2017-08-17 11:21:21 adonath>
+# last changed Time-stamp: <2017-08-17 11:28:40 adonath>
 ###########################################################################
 #
 # 'make'            build gappy binary
@@ -17,7 +17,7 @@ bindir = $(prefix)/bin
 CC = g++
 # compile-time flags
 CFLAGS = -ansi -g -O3 -funroll-loops
-WARN = -Wall -pedantic-errors
+WARN = -Wall -Wpedantic
 # define any directories containing header files
 INCLUDES = -I/usr/include
 # library paths
