@@ -1,5 +1,5 @@
 /**
- *  last changed Time-stamp: <2017-05-29 16:52:20 adonath>
+ *  last changed Time-stamp: <2017-08-17 11:23:46 adonath>
  *
  *  Author: Alexander Donath, a <dot> donath <at> zfmk <dot> de
  */
@@ -45,7 +45,7 @@ int main (int argc, char *argv[])
       message.precision(10);
       final.precision(10);
  
-      const std::string version = "0.0.1";
+      const std::string version = "0.0.2";
       message << endl << THIS_PROG << " extracts splids (split-inducing indels) from multiple sequence alignments.";
       const std::string description = message.str();
       message.str("");
@@ -68,17 +68,17 @@ int main (int argc, char *argv[])
 	  {"debug", "", "FLAG", "Show even more informations on what's being done."},
 
 	  // configuration
-	  {"", "", "", "\nConfiguration:"},
-	  {"fasta", "f", "", "Name of alignment file in FASTA format."},
-	  {"maf", "m", "", "Name of alignment file in MAF format."},
+	  {"", "", "", "\nConfiguration (default values in brackets):"},
+	  {"fasta", "f", "", "Name of input alignment file in FASTA format."},
+	  {"maf", "m", "", "Name of input alignment file in MAF format."},
 	  {"output-prefix", "o", "GAPPY", "Prefix for the output files."},
 	  {"minsize", "l", "2", "Minimum indel size."},          
-	  {"maxsize", "u", "", "Maximum indel size."},  
-	  {"gapsize", "g", "", "Only search for indels of this size."},
-	  {"fuzzy", "z", "FLAG", "Use fuzzy search."},
+	  {"maxsize", "u", "", "Maximum indel size. [no limit]"},  
+	  {"gapsize", "g", "", "Only search for indels of this size. [not set]"},
+	  {"fuzzy", "z", "FLAG", "Use fuzzy search. [off]"},
 	  {"unknownchar", "c", "?", "Unknown sites."},
-	  {"wstart", "" , "", "Start search at this column. Numbering starts with 1."},
-	  {"wend", "" , "", "End search at this column. Numbering starts with 1."},
+	  {"wstart", "" , "", "Start search at this column. [1]"},
+	  {"wend", "" , "", "End search at this column. [end of alignment]"},
 	  {"nexus", "n", "FLAG", "Write result in NEXUS format. Default: FASTA format only."},
 	  {"phylip", "p", "FLAG", "Write result in PHYLIP format. Default: FASTA format only."},
 	  {"steps", "", "FLAG", ""},
@@ -102,7 +102,7 @@ int main (int argc, char *argv[])
 	}
       else if (options.value<bool>("steps"))
 	{
-	  utils::steps(true);
+	  utils::steps(false);
 	  cout << endl;
 	  return(EXIT_SUCCESS);
 	}
@@ -201,8 +201,8 @@ int main (int argc, char *argv[])
 	{
 	  utils::msg(message.str(), LOG);
 	  message.str("");
-	  std::cerr << endl << endl
-		    << "Please provide alignment file [-m MAF] or [-f FASTA]."
+	  std::cerr << endl
+		    << "Please provide an alignment file [-m MAF | -f FASTA]."
 		    << endl << endl << options.help_message();
 	  return(EXIT_SUCCESS);
 	}
@@ -428,7 +428,7 @@ int main (int argc, char *argv[])
       unsigned int total_minutes =  (unsigned int)dif / 60;
       unsigned int minutes = total_minutes % 60;
       unsigned int total_hours = total_minutes / 60;
-      unsigned int hours = total_hours % 24;
+      //unsigned int hours = total_hours % 24;
       unsigned int days = total_hours / 24;
       message << "Time needed: ";
       if(days >= 1)

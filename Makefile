@@ -1,5 +1,5 @@
 ###########################################################################
-# last changed Time-stamp: <2017-05-29 16:31:15 adonath>
+# last changed Time-stamp: <2017-08-17 11:21:21 adonath>
 ###########################################################################
 #
 # 'make'            build gappy binary
@@ -32,7 +32,7 @@ OBJS = $(SOURCES:.cpp=.o)
 # Package information
 #
 MAIN 	= gappy
-VERSION	= 0.0.1
+VERSION	= 0.0.2
 
 # Other tools
 #
@@ -54,7 +54,7 @@ all:
 # the rule(a .cpp file) and $@: the name of the target of the rule (a .o file) 
 # (see the gnu make manual section about automatic variables)
 .cpp.o:
-	$(CC) $(CFLAGS) $(INCLUDES) -c $<  -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) $(WARN) -c $<  -o $@
 
 # install: installs the binary in $(bindir)/
 install:

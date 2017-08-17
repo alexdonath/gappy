@@ -1,5 +1,5 @@
 /**
- *  last changed Time-stamp: <2016-10-21 16:52:00 adonath>
+ *  last changed Time-stamp: <2017-08-16 19:20:24 adonath>
  *
  *  Author: Alexander Donath, a <dot> donath <at> zfmk <dot> de
  */
@@ -196,9 +196,7 @@ namespace files {
    ** END Fasta
    ***********************************************************************/
 
-
   struct maf_t {
-    
     std::string src;
     unsigned int start;
     unsigned int length;

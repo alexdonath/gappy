@@ -1,5 +1,5 @@
 /**
- *  last changed Time-stamp: <2016-10-21 16:51:29 adonath>
+ *  last changed Time-stamp: <2017-08-17 11:18:56 adonath>
  *
  *  Author: Alexander Donath, a <dot> donath <at> zfmk <dot> de
  */
@@ -359,7 +359,7 @@ namespace utils {
    *
    */
   void findGapNeighborhood (std::vector<gaps_t> *gapsV, 
-			    const unsigned int region, 
+			    const int region, 
 			    const unsigned int alnLength);
 
   /**
@@ -403,8 +403,8 @@ namespace utils {
    *
    *
    */
-  bool isTrueBipartition (std::vector<gaps_t> *gapsV, const unsigned int seqPos,
-			  const unsigned int siteId);
+  bool isTrueBipartition (std::vector<gaps_t> *gapsV, const int seqPos,
+			  const int siteId);
 
   void demarkColumn (std::vector<gaps_t> *gapsV, const unsigned int siteId);
 

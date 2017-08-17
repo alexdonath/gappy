@@ -1,5 +1,5 @@
 /**
- *  last changed Time-stamp: <2016-10-21 16:52:28 adonath>
+ *  last changed Time-stamp: <2017-08-16 19:06:03 adonath>
  *
  *  Author: Alexander Donath, a <dot> donath <at> zfmk <dot> de
  */
@@ -36,14 +36,14 @@ void files::scanMaf (std::vector<unsigned int>* positions,
 
   input.unsetf(ios_base::skipws);
   
-  size_t line_counter = 0;
+  //size_t line_counter = 0;
   size_t chars_read = 0;
   char currChar;
   char lastChar = '\n';
   positions->clear();
   bool paragraph = false;
   bool skip = false;
-  bool seq = false;
+  //bool seq = false;
   
   // Check if file is still readable
   while(input.good()) {
@@ -63,7 +63,7 @@ void files::scanMaf (std::vector<unsigned int>* positions,
 	  }
 	else if (lastChar == '\n' && currChar == 's')
 	  {
-	    seq = true;
+	    //seq = true;
 	    lastChar = currChar;
 	    skip = false;
 	  }

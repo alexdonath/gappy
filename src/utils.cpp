@@ -1,5 +1,5 @@
 /**
- *  last changed Time-stamp: <2016-10-21 16:52:34 adonath>
+ *  last changed Time-stamp: <2017-08-16 19:03:18 adonath>
  *
  *  Author: Alexander Donath, a <dot> donath <at> zfmk <dot> de
  */
@@ -441,13 +441,13 @@ void utils::findGapsInSeq(const unsigned int seqId, const std::string &seq,
 void utils::findIdenticalGaps (std::vector<gaps_t> *gapsV, 
 			       const unsigned int alnLength)
 {
-  for (int j = 0; j < alnLength ; ++j)
+  for (unsigned int j = 0; j < alnLength ; ++j)
     {
       //utils::StatusBar(j, alnLength-1, 20);
-      unsigned int start;
-      unsigned int stop;
-      unsigned int seq;
-      for (int i = 0; i < (*gapsV).size() ; ++i)
+      int start;
+      int stop;
+      //unsigned int seq;
+      for (unsigned int i = 0; i < (*gapsV).size() ; ++i)
 	{
 	  if ((*gapsV)[i][j].start == -1)
 	    continue;
@@ -455,7 +455,7 @@ void utils::findIdenticalGaps (std::vector<gaps_t> *gapsV,
 	    {
 	      start = (*gapsV)[i][j].start;
 	      stop = (*gapsV)[i][j].stop;
-	      seq = i;
+	      //seq = i;
 	      for (unsigned int k = i; k < (*gapsV).size(); ++k)
 		{
 		  if ( (*gapsV)[k][j].start == start 
@@ -478,12 +478,12 @@ void utils::markUnknown (std::vector<gaps_t> *gapsV,
 {
 
   unsigned int i = 0;
-  unsigned int add = 0;
+  //unsigned int add = 0;
   while (i < alnLength) //column
     {
       unsigned int j = 0;
       int ustart = -1;
-      int ustop = -1;
+      //int ustop = -1;
       while (j < noOfSeqs) //line
 	{
 	  if ((*gapsV)[j][i].unknown)
@@ -559,7 +559,7 @@ void utils::findPartition (std::vector<gaps_t> *gapsV,
       for (it = sizes.begin() ; it != sizes.end() ; ++it)
 	max = (*it > max) ? *it : max;
 
-      if (max <= maxSize && max >= minSize)
+      if ((unsigned) max <= maxSize && (unsigned) max >= minSize)
 	in = true;
       else 
 	in = false;
@@ -678,7 +678,7 @@ void utils::findPartitionOld (std::vector<gaps_t> *gapsV,
       for (it = sizes.begin() ; it != sizes.end() ; ++it)
 	max = (*it > max) ? *it : max;
 
-      if (max <= maxSize && max >= minSize)
+      if ((unsigned) max <= maxSize && (unsigned) max >= minSize)
 	{
 	  in = true;
 	}
@@ -726,23 +726,23 @@ void utils::findPartitionOld (std::vector<gaps_t> *gapsV,
 
 
 void utils::findGapNeighborhood (std::vector<gaps_t> *gapsV,
-				 const unsigned int region, 
+				 const int region, 
 				 const unsigned int alnLength) 
 {
-  for (int i = 0; i < (*gapsV).size()-1 ; i++)
+  for (int i = 0; (unsigned) i < (*gapsV).size()-1 ; i++)
     {
-      for (int j = 0; j < (*gapsV)[i].size() ; j++)
+      for (int j = 0; (unsigned) j < (*gapsV)[i].size() ; j++)
 	{
 	  if ((*gapsV)[i][j].stop != -1)
 	    {
 	      cout << (*gapsV)[i][j].stop;
 	      int start = (j < region) ? 0 : j-region;
 	      cout << " j:" << j << " region:" << region << " start " << start;
-	      int stop =  (j+region > (*gapsV)[i].size()-1) ? (*gapsV)[i].size()-1 : j+region;
+	      int stop =  ((unsigned) j+region > (*gapsV)[i].size()-1) ? (*gapsV)[i].size()-1 : j+region;
 	      cout << " stop " << stop << endl;
 	      int k = i+1;
 	    loop:
-	      while (k < (*gapsV).size())
+	      while ((unsigned) k < (*gapsV).size())
 		{
 		  for (int l = start ; l <= stop ; ++l)
 		    {
@@ -771,7 +771,7 @@ void utils::findGapNeighborhood (std::vector<gaps_t> *gapsV,
 			}
 		      else if (abs(j-k) <= region)
 			{
-			  int diff = region-abs(j-k);
+			  int diff = region - abs(j-k);
 			  if ((*gapsV)[i][j].stop == (*gapsV)[k][l].stop)
 			    {
 			      cout << "similar2" << endl;
@@ -837,9 +837,9 @@ void utils::printGaps(const std::vector<gaps_t> &gapsV)
 void utils::updateIdenticalGaps(std::vector<gaps_t> *gapsV, 
 				const unsigned int alnLength)
 {
-  for (int i = 0; i < (*gapsV).size()-1 ; i++)
+  for (unsigned int i = 0; i < (*gapsV).size()-1 ; i++)
     {
-      for (int j = 0; j < alnLength ; j++)
+      for (unsigned int j = 0; j < alnLength ; j++)
 	{
 	  (*gapsV)[i][j].sim = -1;
 	}
@@ -911,14 +911,14 @@ bool utils::parsimonyInformative(const std::vector< std::vector< int > > &VV,
 }
 
 bool utils::isTrueBipartition (std::vector<gaps_t> *gapsV,
-			       const unsigned int seqPos,
-			       const unsigned int siteId)
+			       const int seqPos,
+			       const int siteId)
 {
   
   //cout << (*gapsV).size() << endl;
   //cout << (*gapsV)[siteId].size() << endl;
    
-  for (unsigned int i = 0 ; i < seqPos ; ++i)
+  for (int i = 0 ; i < seqPos ; ++i)
     {
       //cout << (*gapsV)[i][siteId].start << " vs. " << (*gapsV)[seqPos][siteId].start << endl;
       if ( ( (*gapsV)[seqPos][siteId].start == siteId
@@ -1002,7 +1002,7 @@ void utils::checkIndels (std::vector<gaps_t> *gapsV, const unsigned int alnLengt
       stop = (*gapsV)[0][j].stop;
 
       int currCol = j;
-      int currRow = 0;
+      unsigned int currRow = 0;
 
       //find indel region
       while (currRow < (*gapsV).size())
@@ -1061,7 +1061,7 @@ void utils::checkIndels2 (std::vector<gaps_t> *gapsV, const unsigned int alnLeng
       stop = (*gapsV)[0][j].stop;
 
       int currCol = j;
-      int currRow = 0;
+      unsigned int currRow = 0;
 
       // find indel region with maximal expansion
       while (currRow < (*gapsV).size())
@@ -1112,16 +1112,16 @@ void utils::checkIndels2 (std::vector<gaps_t> *gapsV, const unsigned int alnLeng
 	{
 	  gaps_t diffGaps;
 	  gaps_t usableIndels;
-	  int sameIndel = 0;
-	  int gapsOverall = 0;
-	  int gstart = 0;
-	  int gstop = 0;
+	  //int sameIndel = 0;
+	  //int gapsOverall = 0;
+	  //int gstart = 0;
+	  //int gstop = 0;
 	  bool only = false;
 
 	  //collect all indels in region
 	  for (unsigned int i = 0 ; i < (*gapsV).size() ; ++i)
 	    {
-	      unsigned int k = start;
+	      int k = start;
 	      while (k <= stop)
 		{ 
 		  if ( (*gapsV)[i][k].start == -1 
@@ -1268,7 +1268,7 @@ void utils::checkIndels2 (std::vector<gaps_t> *gapsV, const unsigned int alnLeng
 			{
 			  if ( iter->start == iter->stop && fuzzy)
 			    { //cout << "no conflict";
-			      for (int m = 0 ; m < (*gapsV).size() ; ++m)
+			      for (unsigned int m = 0 ; m < (*gapsV).size() ; ++m)
 				if ( (*gapsV)[m][iter->start].start == iter->start
 				     &&
 				     (*gapsV)[m][iter->stop].stop == iter->stop 
@@ -1350,7 +1350,7 @@ void utils::checkIndels2 (std::vector<gaps_t> *gapsV, const unsigned int alnLeng
 		  
 		  if (conflict || nStart == -1)
 		    { //cout << "cannot use this locus: " << mleft << " " << mright << endl;
-		      for (unsigned int l = mleft ; l <= mright ; ++l)
+		      for (int l = mleft ; l <= mright ; ++l)
 			demarkColumn(gapsV,l);
 		    }
 		  else

@@ -1,5 +1,5 @@
 ###########################################################################
-# last changed Time-stamp: <2017-05-29 16:29:18 adonath>
+# last changed Time-stamp: <2017-08-17 11:21:16 adonath>
 ###########################################################################
 
 # Installation targets
@@ -12,7 +12,7 @@ bindir = $(prefix)/../bin
 CC = g++
 # compile-time flags
 CFLAGS = -ansi -g -O3 -funroll-loops
-WARN = -Wall -pedantic-errors
+WARN = -Wall -Wpedantic
 # define any directories containing header files
 INCLUDES = -I/usr/include
 # library paths
@@ -27,7 +27,7 @@ OBJS = ${SOURCES:.cpp=.o}
 # Package information
 #
 MAIN 	= gappy
-VERSION	= 0.0.1
+VERSION	= 0.0.2
 
 # Other tools
 #
@@ -38,10 +38,10 @@ INSTALL = /usr/bin/install -c
 all:	$(MAIN)
 
 $(MAIN): $(OBJS)
-	$(CC) $(CFLAGS) $(INCLUDES) -o $(MAIN) $(OBJS) $(LFLAGS) $(LIBS)
+	$(CC) $(WARN) $(CFLAGS) $(INCLUDES) -o $(MAIN) $(OBJS) $(LFLAGS) $(LIBS)
 
 .cpp.o:
-	$(CC) $(CFLAGS) $(INCLUDES) -c $<  -o $@
+	$(CC) $(WARN) $(CFLAGS) $(INCLUDES) -c $<  -o $@
 
 install:
 	$(INSTALL) -d $(bindir)
