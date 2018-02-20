@@ -28,7 +28,7 @@ make install
 ```
 The gappy binary can now be found in `./bin/`.
 
-4. Cpoy binary to  you like and/or add gappy to your `$PATH`.
+4. Copy binary to a place of your choice and/or add gappy to your `$PATH`.
 
 ## Usage
 
