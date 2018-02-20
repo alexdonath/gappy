@@ -1,5 +1,5 @@
 /**
- *  last changed Time-stamp: <2017-08-16 19:03:18 adonath>
+ *  last changed Time-stamp: <2018-02-20 18:14:06 adonath>
  *
  *  Author: Alexander Donath, a <dot> donath <at> zfmk <dot> de
  */
@@ -1311,7 +1311,7 @@ void utils::checkIndels2 (std::vector<gaps_t> *gapsV, const unsigned int alnLeng
 				    iter->start != nStart 
 				    || 
 				    iter->count != count) //OR allow gaps here
-			    { //cout << "conflict2";
+			    { //cout << "conflict2" << endl;
 			      conflict = true;
 			      
 			      //mleft = (iter->start < nStart) ? iter->start : nStart;
