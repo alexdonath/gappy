@@ -1,3 +1,7 @@
+# Important
+
+Please note that gappy (v1) is not supported anymore. Please use the successor [gappy2](https://github.com/alexdonath/gappy2).
+
 # gappy manual
 
 gappy identifies splids (split-inducing indels) from multiple sequence alignments.
@@ -10,22 +14,30 @@ gappy should compile on all current Linux systems.
 
 ### Compile from source
 
-1. Clone the gappy repository from github.
-```
+1. Clone the gappy repository from github
+
+```txt
 git clone https://github.com/alexdonath/gappy.git
 ```
-2. Change to the local copy of the gappy repository.
-```
+
+2. Change to the local copy of the gappy repository
+
+```txt
 cd gappy
 ```
+
 3. Compile gappy by typing
-```
+
+```bash
 make
 ```
+
 Optional: install gappy by typing
-```
+
+```bash
 make install
 ```
+
 The gappy binary can now be found in `./bin/`.
 
 4. Copy binary to a place of your choice and/or add gappy to your `$PATH`.
@@ -33,13 +45,14 @@ The gappy binary can now be found in `./bin/`.
 ## Usage
 
 Typing
-```
+
+```bash
 gappy
 ```
 
 will show all available options and parameters:
 
-```
+```txt
 Please provide an alignment file [-m MAF | -f FASTA].
 
 Usage: gappy [OPTIONS]
@@ -73,13 +86,12 @@ Configuration (default values in brackets):
 
 ## Getting started
 
-### Input.
+### Input
 
 The only required input is an alignment in FASTA (`-f|--fasta`) or MAF
 (`-m|--maf`) format.
 
-
-### Parameter selection.
+### Parameter selection
 
 By default, gappy extracts all splids >= 2 bp and <= the length of
 the alignment. This is a reasonable choice. Smaller splids have a
@@ -90,11 +102,13 @@ boundary for the splid length (`-u|--maxsize`).
 Alternatively, only splids that have a fixed size (`-g|--gapsize`) can
 be identified. For example,
 
-```
+```bash
 ./gappy -l 10 -u 10 -f input.fasta
 ```
+
 is equivalent to
-```
+
+```bash
 ./gappy -g 10 -f input.fasta
 ```
 
@@ -120,8 +134,7 @@ true missing residue (a deletion, `-`) and residues for which no
 information is available (e.g., `?`; default in gappy). Masking needs
 to be done by the user before running gappy.
 
-
-### Output.
+### Output
 
 The output files will be named according to the input file with the
 prefix `GAPPY`. Furthermore, a suffix will be appended that indicates
@@ -137,17 +150,18 @@ additional `_z` in the suffix.
 By default, results are written in FASTA format. Other output formats
 are NEXUS (`-n|--nexus`) and PHYLIP (`-p|--phylip`) format.
 
-
-### Example.
+### Example
 
 A toy example alignment is provided in the example/ directory.
-```
+
+```bash
 ./gappy -f example.fasta
 ```
 
 will create a file called `GAPPY_example.fasta_2-29.01.FAS` that
 contains:
-```
+
+```bash
 >a
 10
 >b
@@ -167,13 +181,15 @@ contains:
 ```
 
 Likewise,
-```
+
+```bash
 ./gappy -f example.fasta -z
 ```
 
 will create a file called `GAPPY_example.fasta_2-29_z.01.FAS` that
 contains:
-```
+
+```bash
 >a
 101
 >b

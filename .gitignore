@@ -1,5 +1,9 @@
 /test/*
 Makefile.dev
+utils/alnCombine_1.pl
+utils/alnCombine_2.pl
+example/GAPPY_example.fasta_2-29.01.FAS
+example/GAPPY_example.fasta_2-29.gap_counts.txt
 
 # Compiled source #
 ###################
